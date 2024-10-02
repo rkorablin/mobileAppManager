@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
 
@@ -36,8 +36,15 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:4.1.4'
+	testImplementation 'com.playtika.testcontainers:embedded-postgresql:3.1.9'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.named("bootJar") {
+	archiveFileName = "map.jar"
+	launchScript()
 }
